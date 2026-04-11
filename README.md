@@ -27,8 +27,12 @@ Some prompts to answer:
 - How does your `Recommender` compute a score for each song
 - How do you choose which songs to recommend
 
+In real world, it uses lots of matrix like genre, artist, energy, tempo, views, acoustics, instuments and group of people who listen to similar music. 
+User profile stores user details such as favorite genre, mood, target energy, acoustics
 You can include a simple diagram or bullet list if helpful.
-
+score is computed with weighted sum of proximity scores
+recommend() method sorts all songs based on score and returns top k.
+my recommender is going to use genre, mood, energy, acousticness, valence, danceability, tempo_bpm, and from user's end favorite genre, mood, target energy, likes_acoustic will be used.
 ---
 
 ## Getting Started
