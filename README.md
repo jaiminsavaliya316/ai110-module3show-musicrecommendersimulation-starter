@@ -116,7 +116,7 @@ Write 1 to 2 paragraphs here about what you learned:
 
 Combines reflection and model card framing from the Module 3 guidance. :contentReference[oaicite:2]{index=2}  
 
-```markdown
+
 # 🎧 Model Card - Music Recommender Simulation
 
 ## 1. Model Name
@@ -217,3 +217,5 @@ A few sentences about what you learned:
 - How did building this change how you think about real music recommenders
 - Where do you think human judgment still matters, even if the model seems "smart"
 
+screenshot:
+![Screenshot](/images/image.png)
