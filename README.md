@@ -17,22 +17,26 @@ Replace this paragraph with your own summary of what your version does.
 
 ## How The System Works
 
-Explain your design in plain language.
+Each song has 7 attributes: genre, mood, energy, tempo, acousticness, valence, and danceability.
+The user has a taste profile with a preferred genre and mood, plus numeric targets for each attribute.
 
-Some prompts to answer:
+**Algorithm Recipe — scoring each song against the profile:**
 
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
+| Rule | Points |
+|---|---|
+| Genre matches | +2.0 (flat) |
+| Mood matches | +1.5 (flat) |
+| Energy closeness | up to +1.5 |
+| Acousticness closeness | up to +1.2 |
+| Tempo closeness | up to +0.8 |
+| Valence closeness | up to +0.5 |
+| Danceability closeness | up to +0.4 |
 
-In real world, it uses lots of matrix like genre, artist, energy, tempo, views, acoustics, instuments and group of people who listen to similar music. 
-User profile stores user details such as favorite genre, mood, target energy, acoustics
-You can include a simple diagram or bullet list if helpful.
-score is computed with weighted sum of proximity scores
-recommend() method sorts all songs based on score and returns top k.
-my recommender is going to use genre, mood, energy, acousticness, valence, danceability, tempo_bpm, and from user's end favorite genre, mood, target energy, likes_acoustic will be used.
+"Closeness" = `1 - abs(song value - target value)`, so a perfect match gives the full points and a total mismatch gives 0. All 20 songs are scored, sorted, and the top 5 are returned with a plain-English reason for each pick.
+
+**Expected biases:**
+- A user whose favorite genre is rare in the catalog (e.g., "indie pop" — only 1 song) will get that one song boosted to the top regardless of how well the rest of the attributes match, while users with common genres like "lofi" get more competition for the genre bonus.
+- Mood is only worth +1.5 vs genre's +2.0, so a song can rank higher by matching genre alone even if its mood is a complete mismatch — a great mood-match in the wrong genre loses.
 ---
 
 ## Getting Started
